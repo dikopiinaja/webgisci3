@@ -1,0 +1,6 @@
+{
+    "require": {
+        "pusher/pusher-php-server": "^6.1",
+        "dompdf/dompdf": "^1.0"
+    }
+}

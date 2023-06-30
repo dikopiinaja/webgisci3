@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-info sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 	<!-- Sidebar - Brand -->
 	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin'); ?>">
@@ -76,6 +76,12 @@
 				<a class="collapse-item" href="login.html">Penjualan Tiket</a>
 			</div>
 		</div> -->
+		</li>
+		<li class="nav-item">
+			<a class="nav-link <?php if ($this->uri->segment(1) == '') { echo 'active'; } ?>" href="<?= base_url('admin/layouts'); ?>">
+				<i class="fas fa-fw fa-car"></i>
+				<span>Layout Mobil</span>
+			</a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link <?php if ($this->uri->segment(1) == '') { echo 'active'; } ?>" href="<?= base_url(''); ?>">

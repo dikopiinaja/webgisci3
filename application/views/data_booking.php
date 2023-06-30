@@ -3,7 +3,7 @@
 ?> -->
 <div class="p-2 container" style="height:500px;">
 	<div class="card bg-light">
-		<div class="card-title card-header text-center bg-primary">
+		<div class="card-title card-header text-center bg-success text-white">
 		<h4><b>Update !!!</b></h4>
 		<i> Data Booking Penumpang Travel / Hari</i>
 		</div>

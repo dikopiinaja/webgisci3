@@ -2,8 +2,8 @@
 <div>
 <?= $this->session->flashdata('message'); ?>
 </div>
-<button class="btn btn-warning"><a class="btn btn-primary float-right" href="<?= site_url('admin/tambahJadwal')?>"> <i class="fa fa-plus"></i></a></button>
-<button class="btn btn-warning"><a class="btn btn-primary float-right" href="<?= site_url('admin/cetakLaporan_jadwal')?>"> <i class="fa fa-print"></i></a></button>
+<button class="btn btn-primary" id="btnTambah"><i class="fa fa-plus"></i></button>
+<button class="btn btn-warning"><a href="<?= site_url('admin/cetakLaporan_jadwal')?>"> <i class="fa fa-print"></i></a></button>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary text-center"><?php echo $subtitle;?>
@@ -67,3 +67,9 @@
 	</div>
 </div>
 <!-- END HAPUS PERJALANAN -->
+
+<script>
+	$('#btnTambah').click(function(){
+		window.location = "<?= site_url('admin/tambahJadwal')?>";
+	})
+</script>

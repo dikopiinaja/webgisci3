@@ -6,17 +6,16 @@
 	<div class="col-md-12">
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
-				<h6 class="m-0 font-weight-bold text-primary"><?php echo $subtitle;?>
-					<a href="<?php echo base_url()?>admin/tambah_perjalanan"
-						class="btn-sm btn-circle btn-primary  float-right"><i class="fa fa-plus"></i></a>
-				</h6>
+				<h5 class="m-0 font-weight-bold text-primary"><?= $subtitle;?>
+					<button class="btn-sm btn-success float-right" id="newPage"><i class="fa fa-plus"></i></button>
+				</h5>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table" id="dataTable" width="100%" cellspacing="0">
-						<thead class="thead-dark">
+					<table class="table" id="dataPerjalanan" width="100%" cellspacing="0">
+						<thead>
 							<tr>
-								<th>ID Perjalanan</th>
+								<th width="5%">ID Perjalanan</th>
 								<th>Kota</th>
 								<th>Latitude</th>
 								<th>Longitude</th>
@@ -42,7 +41,7 @@
 			<div class="modal-footer">
 				<form id="formDelete" action="" method="post">
 					<button class="btn btn-default" data-dismiss="modal">Batal</button>
-					<button type="submit" class="btn btn-primary">Delete</button>
+					<button type="submit" class="btn btn-primary">Hapus</button>
 				</form>
 			</div>
 		</div>
@@ -53,6 +52,20 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	getPerjalanan();
+
+	$('#dataPerjalanan').DataTable({
+		fixedHeader: true,
+		pagingType: 'full_numbers',
+		// bJQueryUI:true,
+		// bSort:false,
+		// bPaginate:true,
+		// sPaginationType:"full_numbers",
+		// iDisplayLength: 10
+	})
+});
+
+$('#newPage').click(function(){
+	window.location = "<?= base_url()?>admin/tambah_perjalanan";
 });
 
 function getPerjalanan(){
@@ -77,11 +90,11 @@ function getPerjalanan(){
 						<td>${latitude}</td>
 						<td>${longitude}</td>
 						<td>
-						<a href="<?php echo base_url()?>admin/update_perjalanan/${id_perjalanan}?>"
-										class="btn btn-circle btn-warning"><i class="fa fa-pen"></i></a>
+						<a href="<?= base_url()?>admin/update_perjalanan/${id_perjalanan}?>"
+										class="btn btn-sm btn-warning"><i class="fa fa-pen"></i></a>
 									<a href="#hapus_perjalanan" data-toggle="modal"
 										onclick="$('#hapus_perjalanan #formDelete').attr('action', '<?=site_url('admin/hapus_perjalanan/${id_perjalanan}')?>')"
-										class="btn btn-circle btn-danger"><i class="fa fa-trash"></i></a>
+										class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
 						</td>
 					</tr>
 				`

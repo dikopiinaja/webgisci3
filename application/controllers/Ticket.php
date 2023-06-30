@@ -8,16 +8,25 @@ class Ticket extends CI_Controller {
         // $data['jumlahPenumpang'] = $this->model_penumpang->jumlahPenumpang();
         $data['travel'] = $this->model_guest->travelProfile();
         // var_dump($data['query']);
-        // $no_pembayaran = $this->session->flashdata('nomor');
-        $no_tiket = $_GET['no_tiket'];
-        $data['tiket']= $this->model_penumpang->getTiket('no_tiket')->result();
+        $no_pembayaran = $this->session->flashdata('nomor');
+        $no_tiket = $this->session->flashdata('no_tiket');
+        // echo $no_tiket = $_GET['no_tiket'];
+        // $data['tiket']= $this->model_penumpang->getTiket('no_tiket')->result();
+        // $data['tiket']= $this->model_guest->getTiketID($no_tiket)->row();
+        $data['jumlah']= $this->model_guest->getTiketID($no_tiket)->num_rows();
+        // var_dump($data['tiket']);
+        // var_dump($data['jumlah']);
+        // die();
 
         $this->template->secondpage('ticket', $data);
     }
 
     public function cetakTiket($id)
     {
-        $data['penumpang'] = $this->model_penumpang->CetakID()->result();
+        $data['penumpang'] = $this->model_penumpang->CetakID($id)->result_array();
+        // var_dump($data['penumpang']);
+        require_once APPPATH.'third_party/fpdf/fpdf.php';
+
         $pdf = new FPDF('l','mm','A5');
         // membuat halaman baru
         $pdf->AddPage();
@@ -31,31 +40,58 @@ class Ticket extends CI_Controller {
         $pdf->Cell(190,7,'E-Ticket ',1,1,'C');
         // Memberikan space kebawah agar tidak terlalu rapat
 		$pdf->Cell(10,10,'',0,1);
-		$hasil = $this->model_penumpang->CetakID('id', $id);
-        foreach ($hasil as $q){
-        $pdf->SetFont('Courier','B',11);
-		$pdf->Cell(38,7,'ID Tiket',0,0);
-		$pdf->Cell(38,7,$q['id_tiket'],0,1);
-		$pdf->Cell(38,7,'Nama',0,0);
-		$pdf->Cell(38,7,$q['nama'],0,1);
-		$pdf->Cell(38,7,'No KTP',0,0);
-		$pdf->Cell(38,7,$q['id_ktp'],0,1);
-		$pdf->Cell(38,7,'Tujuan',0,0);
-		$pdf->Cell(38,7,$q['tujuan'],0,1);
-		$pdf->Cell(38,7,'Alamat',0,0);
-		$pdf->Cell(38,7,$q['alamat'],0,1);
-		$pdf->Cell(38,7,'NO HP',0,0);
-		$pdf->Cell(38,7,$q['no_tlp'],0,1);
-		$pdf->Cell(38,7,'Tgl Berangkat',0,0);
-		$pdf->Cell(38,7,$q['tgl_brngkt'],0,1);
-		$pdf->Cell(38,7,'Tgl Pesan',0,0);
-		$pdf->Cell(38,7,$q['created_at'],0,1);
-		$pdf->SetFont('Courier','B',12);
-		$pdf->Cell(10,10,'',0,1);
-		$pdf->Cell(190,7,'Owner',0,1,'C');
-		$pdf->Cell(3,3,'',0,1);
-		$pdf->Cell(190,7,'Imam Sutaryo',0,1,'C');
+		// $hasil = $this->model_penumpang->CetakID('id', $id);
+        foreach ($data['penumpang'] as $q){
+            // var_dump($q);
+            $pdf->SetFont('Courier','B',11);
+            $pdf->Cell(38,7,'ID Tiket',0,0);
+            $pdf->Cell(38,7,$q['no_tiket'],0,1);
+            $pdf->Cell(38,7,'Nama',0,0);
+            $pdf->Cell(38,7,$q['nama'],0,1);
+            $pdf->Cell(38,7,'No KTP',0,0);
+            $pdf->Cell(38,7,$q['no_identitas'],0,1);
+            $pdf->Cell(38,7,'Tujuan',0,0);
+            $pdf->Cell(38,7,$q['tujuan'],0,1);
+            $pdf->Cell(38,7,'Alamat',0,0);
+            $pdf->Cell(38,7,$q['alamat'],0,1);
+            $pdf->Cell(38,7,'NO HP',0,0);
+            $pdf->Cell(38,7,$q['no_telpon'],0,1);
+            $pdf->Cell(38,7,'Tgl Berangkat',0,0);
+            $pdf->Cell(38,7,$q['tgl_berangkat'],0,1);
+            $pdf->Cell(38,7,'Tgl Pesan',0,0);
+            $pdf->Cell(38,7,$q['tgl_pesan'],0,1);
+            $pdf->SetFont('Courier','B',12);
+            $pdf->Cell(10,10,'',0,1);
+            $pdf->Cell(190,7,'Owner',0,1,'C');
+            $pdf->Cell(3,3,'',0,1);
+            $pdf->Cell(190,7,'Imam Sutaryo',0,1,'C');
         }
+		// $hasil = $this->model_penumpang->CetakID('id', $id);
+        // foreach ($hasil as $q){
+        //     var_dump($q);
+        //     $pdf->SetFont('Courier','B',11);
+        //     $pdf->Cell(38,7,'ID Tiket',0,0);
+        //     $pdf->Cell(38,7,$q['id_tiket'],0,1);
+        //     $pdf->Cell(38,7,'Nama',0,0);
+        //     $pdf->Cell(38,7,$q['nama'],0,1);
+        //     $pdf->Cell(38,7,'No KTP',0,0);
+        //     $pdf->Cell(38,7,$q['id_ktp'],0,1);
+        //     $pdf->Cell(38,7,'Tujuan',0,0);
+        //     $pdf->Cell(38,7,$q['tujuan'],0,1);
+        //     $pdf->Cell(38,7,'Alamat',0,0);
+        //     $pdf->Cell(38,7,$q['alamat'],0,1);
+        //     $pdf->Cell(38,7,'NO HP',0,0);
+        //     $pdf->Cell(38,7,$q['no_tlp'],0,1);
+        //     $pdf->Cell(38,7,'Tgl Berangkat',0,0);
+        //     $pdf->Cell(38,7,$q['tgl_brngkt'],0,1);
+        //     $pdf->Cell(38,7,'Tgl Pesan',0,0);
+        //     $pdf->Cell(38,7,$q['created_at'],0,1);
+        //     $pdf->SetFont('Courier','B',12);
+        //     $pdf->Cell(10,10,'',0,1);
+        //     $pdf->Cell(190,7,'Owner',0,1,'C');
+        //     $pdf->Cell(3,3,'',0,1);
+        //     $pdf->Cell(190,7,'Imam Sutaryo',0,1,'C');
+        // }
 		$pdf->Output();
     }
 }

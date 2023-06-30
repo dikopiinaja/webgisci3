@@ -1,4 +1,7 @@
 <?php if($this->session->flashdata('nomor') === null): ?>
+<?php 
+	echo $this->session->flashdata('nomor');
+?>
 <div class="container-fluid mt-5">
 	<div class="row justify-content-center">
 		<div class="col-5">
@@ -10,7 +13,9 @@
 	</div>
 </div>
 <?php else: ?>
-
+	<?php 
+	echo $this->session->flashdata('total');
+?>
 <div class="container-fluid mt-2">
 	<div class="row justify-content-center">
 		<div class="col-6">
@@ -18,13 +23,13 @@
 				<div class="card-header bg-dark text-white text-center">Success!!!</div>
 				<div class="card-body">
 					<h3 class="text-center text-success"><i>Selamat!!!</i></h3>
-					<p class="text-center">Anda telah Berhasil Memesan Tiket travel</p>
+					<p class="text-center">Anda telah Berhasil Memesan <?= $jumlah; ?> Tiket travel</p>
 					<p class="text-center text-warning">Lakukan Pembayaran ditempat!!</p>
 					<h5 class="text-center">Total yang harus dibayar</h5>
 					<h3 class="text-center text-danger"><b><?= $this->session->flashdata('total') ?></b></h3>
 					<br>
 					<h5 class="text-center">Silahkan Cetak E-ticket Anda !!!
-						<a href="<?= site_url('ticket/cetakTiket')?>" class="btn btn-sm btn-primary"><i
+						<a href="<?= site_url('ticket/cetakTiket/'.$this->session->flashdata('no_tiket').'')?>" class="btn btn-sm btn-primary"><i
 								class="fa fa-print"></i></a>
 					</h5>
 					<br>

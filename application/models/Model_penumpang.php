@@ -59,10 +59,21 @@ class Model_penumpang extends CI_Model{
 
     public function CetakID($id)
     {
-        $id = 'id';
-        $this->db->like('id', $id);
-        return $this->db->get('tb_penumpang')->result_array();
+        // $id = 'id';
+        $this->db->select('*');
+        // $this->db->from('tb_penumpang');
+        $this->db->join('tb_jadwal','tb_jadwal.id_jadwal = tb_penumpang.id_jadwal'); 
+        $this->db->join('tb_tiket','tb_tiket.no_tiket = tb_penumpang.no_tiket'); 
+        $this->db->like('tb_penumpang.no_tiket', $id);
+        return $this->db->get('tb_penumpang');
     }
+
+    // public function CetakID($id)
+    // {
+    //     // $id = 'id';
+    //     $this->db->like('no_tiket', $id);
+    //     return $this->db->get('tb_penumpang')->result_array();
+    // }
 
     public function Tampiltanggal()
     {

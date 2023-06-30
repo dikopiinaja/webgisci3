@@ -124,7 +124,7 @@ class Admin extends CI_Controller {
 		$data['subtitle'] = 'Tambah Jadwal ';
 		$data['mobil'] = $this->model_mobil->all_car()->result();
 		$data['perjalanan'] = $this->model_guest->getDataPerjalanan()->result();
-		$data['kategori'] = $this->model_kategori->all_categories()->result();
+		$data['kategori'] = $this->model_kategori->all_categories();
 		$data['tgl_dibuat'] = date('Y-m-d');
 		// $data['tgl_pesan'] = date('Y-m-d H:i:s');
 
@@ -139,26 +139,7 @@ class Admin extends CI_Controller {
 				'judul' => 'Jadwal telah ditambahkan',
 				'pesan' => 'Jadwal' . $this->input->post('nama_kategori') . ' ditambahkan ' 
 			];
-
-			// $this->load->library('ci_pusher');
-
-			// $pusher = $this->ci_pusher->get_pusher();
-
-			// require_once(APPPATH.'views/vendor/autoload.php');
-			// $options = array(
-			// 	'cluster' => 'ap1',
-			// 	'useTLS' => true
-			//   );
-			//   $pusher = new Pusher\Pusher(
-			// 	'0bc788817f001f4a9802',
-			// 	'98e63699e31c15d432e7',
-			// 	'1175474',
-			// 	$options
-			//   );
-
-			// $data['message'] = 'success';
-			// $pusher->trigger('my-channel', 'my-event', $data);
-			// var_dump($notifikasi);
+			
 			$this->db->insert('tb_notifikasi', $notifikasi);
             $this->session->set_flashdata('success', 'Berhasil disimpan');
 			redirect('admin/jadwal', 'refresh');
@@ -410,5 +391,23 @@ class Admin extends CI_Controller {
 		$this->pdf->setPaper('A4', 'landscape');
 		$this->pdf->filename = "Laporan Jadwal Keberangkatan.pdf";
 		$this->pdf->load_view('admin/jadwal/laporan_pdf', $data);
+	}
+
+	public function layouts()
+	{
+		$data['user'] = $this->db->get_where('tb_user', ['user_email' =>
+        $this->session->userdata('user_email')])->row_array();
+		$data['cars'] = $this->model_mobil->all_car()->result();
+
+		$data['title'] = 'Mutiara';
+		$data['breadcrumb'] = "Master";
+		$data['subtitle'] = "Layout Mobil";
+		$this->template->utama('admin/layout/index', $data);
+	}
+
+	function getPenumpangList()
+	{
+		$data = $this->model_penumpang->allPenumpang()->result();
+		echo json_encode($data);
 	}
 }

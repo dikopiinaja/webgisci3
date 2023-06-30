@@ -123,9 +123,14 @@ class Guest extends CI_Controller {
 			'status' => 0
 		);
 
+		// cek data tiket
+		// var_dump($data);
+		
 		$this->model_penumpang->insertPembayaran($data);
+		
+		echo $cek = $this->model_guest->getTiket()->num_rows()+1;
+		// echo $cek;
 
-		$cek = $this->model_guest->getTiket()->num_rows()+1;
 
 		$tgl_pesan = date('Y-m-d H:i:s');
 		$mobil = $_GET['mobil'];
@@ -147,6 +152,8 @@ class Guest extends CI_Controller {
 
 		$this->model_penumpang->insertPenumpang('tb_penumpang', $simpan);
 
+		// var_dump($simpan);
+
 		$data = array(
 			'no_tiket' => $no_tiket,
 			'id_jadwal' => $this->input->post('id_jadwal'),
@@ -157,7 +164,11 @@ class Guest extends CI_Controller {
 		);
 		$this->model_penumpang->insertPemesan($data);
 
+		// var_dump($data);
+		// die();
+
 		$this->session->set_flashdata('nomor', $no_pembayaran);
+		$this->session->set_flashdata('no_tiket', $no_tiket);
 		$this->session->set_flashdata('total', $total_pembayaran);
 		redirect('ticket');
 	}

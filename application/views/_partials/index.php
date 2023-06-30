@@ -72,7 +72,7 @@
 	});
 
 </script> -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(document).ready(function(){
 		setInterval(function(){
 			$.ajax({
@@ -86,5 +86,5 @@
 			});
 		}, 2000);
 	})
-</script>
+</script> -->
 </html>

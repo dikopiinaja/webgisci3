@@ -58,8 +58,16 @@
 </div>
 <div class="container">
 	<?php if (!isset($tiket_travel)) : ?>
-
 	<?php else : ?>
+		<?php if ($tiket_travel == NULL) : ?>
+			<script>
+				Swal.fire(
+					'Oops...',
+					'Tiket travel not found!!',
+					'error'
+				);
+			</script>
+		<?php else: ?>
 		<div id="mapid"></div>
 		<div class="table-responsive">
 			<table class="table table-hover">
@@ -74,9 +82,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php if ($tiket_travel === NULL) : ?>
-						<p>Maaf Tiket Tidak Tersedia</p>
-					<?php endif ?>
 					<?php $no = 1;
 					foreach ($tiket_travel as $tr) : ?>
 						<tr>
@@ -101,9 +106,10 @@
 			</style>
 			<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
-			<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 			<!-- Peta Perjalanan -->
 			<script>
+
 				var mymap = L.map('mapid').setView([-8.1880314, 108.3328141], 6.5);
 				let latLng1 = L.latLng(<?= $tr->LATLONG1 ?>);
 				let latLng2 = L.latLng(<?= $tr->LATLONG2 ?>);
@@ -111,11 +117,16 @@
 				let wp1 = new L.Routing.Waypoint(latLng1);
 				let wp2 = new L.Routing.Waypoint(latLng2);
 
-				L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+				L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia3Vuc2FyaWZhbiIsImEiOiJjbGl1YTNqcHcwZ3NuM3BtODJibDlkY3ZhIn0.ZXfl_8wjX5q5Qv0YhVdaQQ', {
 					attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
 						'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 					id: 'mapbox/streets-v11',
 				}).addTo(mymap);
+				// L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+				// 	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+				// 		'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+				// 	id: 'mapbox/streets-v11',
+				// }).addTo(mymap);
 
 				L.Routing.control({
 					waypoints: [latLng1, latLng2]
@@ -146,5 +157,6 @@
 		<?php endforeach ?>
 
 		</div>
+	<?php endif; ?>
 	<?php endif; ?>
 </div>

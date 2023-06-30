@@ -2,73 +2,91 @@
 date_default_timezone_set('Asia/Jakarta');
 $tgl = date('d-m-Y H:i:s');
 ?>
+<style>
+	.text-label{
+		font-size: 10pt;
+		margin-bottom: 0;
+	}
+	.form-control-plaintext{
+		font-size: 10pt;
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+</style>
 <div class="container-fluid">
 	<div class="row justify-content-center">
-		<div class="col-md-5 mt-2">
+		<div class="col-md-4 mt-2">
 			<div class="card">
-				<div class="card-header bg-warning text-center text-black">
+				<div class="card-header bg-success text-white">
 					Informasi Perjalanan
 				</div>
-				<div class="card-body">
+				<div class="card-body" style="padding:10px;">
 					<!-- <div class="row"> -->
-					<div class="form-group form-inline">
-						<div class="col-md-4">
-							<h6><label class="text-primary">Mobil</label></h6>
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<label class="text-label text-left">Mobil</label>
 						</div>
-						<div class="col-md-8">
+						<div class="col-sm-1">: </div>
+						<div class="col-sm-7">
 							<input class="form-control-plaintext" readonly disable type="text" value="<?php cetak($info->MOBIL) ?>">
 						</div>
 					</div>
 					<!-- </div> -->
 					<!-- <div class="row"> -->
-					<div class="form-group  form-inline">
-						<div class="col-md-4">
-							<h6><label class="text-primary">Dari</label></h6>
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<label class="text-label text-left">Dari</label>
 						</div>
-						<div class="col-md-8">
+						<div class="col-sm-1">: </div>
+						<div class="col-sm-7">
 							<input class="form-control-plaintext" readonly disable type="text" value="<?php cetak($info->ASAL) ?>">
 						</div>
 					</div>
 					<!-- </div> -->
 					<!-- <div class="row"> -->
-					<div class="form-group  form-inline">
-						<div class="col-md-4">
-							<h6><label class="text-primary">Tujuan</label></h6>
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<label class="text-label text-left">Tujuan</label>
 						</div>
-						<div class="col-md-8">
+						<div class="col-sm-1">: </div>
+						<div class="col-sm-7">
 							<input class="form-control-plaintext" readonly disable type="text" value="<?php cetak($info->TUJUAN) ?>">
 						</div>
 					</div>
 					<!-- </div> -->
-					<div class="form-group form-inline">
-						<div class="col-md-4">
-							<h6><label class="text-primary">Ongkos</label></h6>
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<label class="text-label text-left">Ongkos</label>
 						</div>
-						<div class="col-md-8">
+						<div class="col-sm-1">: </div>
+						<div class="col-sm-7">
 							<input class="form-control-plaintext" readonly disable type="text" value="<?php cetak("Rp. " . rupiah($info->ongkos)) ?>">
 						</div>
 					</div>
-					<div class="form-group form-inline">
-						<div class="col-md-4">
-							<h6><label class="text-primary">Tgl Berangkat</label></h6>
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<label class="text-label text-left">Tgl Berangkat</label>
 						</div>
-						<div class="col-md-8">
+						<div class="col-sm-1">: </div>
+						<div class="col-sm-7">
 							<input class="form-control-plaintext" readonly disable type="text" value="<?php cetak($info->tgl_berangkat) ?>">
 						</div>
 					</div>
-					<div class="form-group form-inline">
-						<div class="col-md-4">
-							<h6><label class="text-primary">Tgl Sampai</label></h6>
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<label class="text-label text-left">Tgl Sampai</label>
 						</div>
-						<div class="col-md-8">
+						<div class="col-sm-1">: </div>
+						<div class="col-sm-7">
 							<input class="form-control-plaintext" readonly disable type="text" value="<?php cetak($info->tgl_sampai) ?>">
 						</div>
 					</div>
-					<div class="form-group form-inline">
-						<div class="col-md-4">
-							<span><label class="text-primary">Jml Penumpang</label></span>
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<span><label class="text-label text-left">Jml Penumpang</label></span>
 						</div>
-						<div class="col-md-8">
+						<div class="col-sm-1">: </div>
+						<div class="col-sm-7">
 							<input class="form-control-plaintext" readonly disable type="text" value="<?= $_GET['p'] ?>">
 							<input class="form-control-plaintext" type="hidden" value="<?= $_GET['p'] ?>">
 						</div>
@@ -76,7 +94,7 @@ $tgl = date('d-m-Y H:i:s');
 				</div>
 			</div>
 		</div>
-		<div class="col-md-7 mt-2">
+		<div class="col-md-8 mt-2">
 			<form action="<?= base_url('pesanTiket') ?>" method="POST">
 				<input type="hidden" name='penumpang' value='<?= $_GET['p'] ?>'>
 				<input type="hidden" name='id_jadwal' value='<?= $id_jadwal ?>'>
@@ -84,7 +102,7 @@ $tgl = date('d-m-Y H:i:s');
 				<input type="hidden" name='ongkos' value='<?= $info->ongkos ?>'>
 				<input type="hidden" name='kursi' value='<?= $no++ ?> / <?= $info->kapasitas ?>'>
 				<div class="card">
-					<div class="card-header bg-primary text-white text-center">
+					<div class="card-header bg-secondary text-white">
 						Detail Penumpang
 					</div>
 					<div class="card-body">
@@ -114,7 +132,7 @@ $tgl = date('d-m-Y H:i:s');
 				</div>
 				<hr>
 				<div class="card">
-					<div class="card-header bg-primary text-center text-white">
+					<div class="card-header bg-secondary text-white">
 						Detail Pemesan
 					</div>
 					<div class="card-body">

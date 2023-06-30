@@ -148,6 +148,42 @@ class Admin extends CI_Controller {
 		$this->template->utama('admin/jadwal/t_jadwal', $data);
 	}
 
+	public function editJadwal($id = null)
+	{
+		$data['user'] = $this->db->get_where('tb_user', ['user_email' =>
+		$this->session->userdata('user_email')])->row_array();
+
+		$data['jadwal'] = $this->model_jadwal->getById($id);
+
+		$data['title'] = 'Mutiara';
+		$data['breadcrumb'] = 'Jadwal ';
+		$data['subtitle'] = 'Edit Jadwal ';
+		$data['mobil'] = $this->model_mobil->all_car()->result();
+		$data['perjalanan'] = $this->model_guest->getDataPerjalanan()->result();
+		$data['kategori'] = $this->model_kategori->all_categories();
+		$data['tgl_dibuat'] = date('Y-m-d');
+		// $data['tgl_pesan'] = date('Y-m-d H:i:s');
+
+		$jadwal = $this->model_jadwal;
+        $validation = $this->form_validation;
+        $validation->set_rules($jadwal->rules());
+
+        if ($validation->run()) {
+            $jadwal->update_jadwal();
+			$data['tgl_dibuat'] = date('d-m-Y');
+			$notifikasi = [
+				'judul' => 'Jadwal telah diedit',
+				'pesan' => 'Jadwal' . $this->input->post('nama_kategori') . ' diedit ' 
+			];
+			
+			$this->db->insert('tb_notifikasi', $notifikasi);
+            $this->session->set_flashdata('success', 'Berhasil disimpan');
+			redirect('admin/jadwal', 'refresh');
+        }
+
+		$this->template->utama('admin/jadwal/e_jadwal', $data);
+	}
+
 	public function notifikasi()
 	{
 		$data['user'] = $this->db->get_where('tb_user', ['user_email' =>

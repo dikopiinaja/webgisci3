@@ -66,6 +66,9 @@ Class Model_perjalanan extends CI_Model{
 		
 		$this->id_perjalanan =$post['id'];
 		$this->nama_perjalanan =$post['nama_perjalanan'];
+		$this->latitude =$post['latitude'];
+		$this->longitude =$post['longitude'];
+		$this->latlong =$post['latlong'];
 		$this->db->update($this->_table, $this, array('id_perjalanan' => $post['id']));
     }
 

@@ -2,17 +2,19 @@
 <div>
 <?= $this->session->flashdata('message'); ?>
 </div>
-<button class="btn btn-primary" id="btnTambah"><i class="fa fa-plus"></i></button>
-<button class="btn btn-warning"><a href="<?= site_url('admin/cetakLaporan_jadwal')?>"> <i class="fa fa-print"></i></a></button>
+
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary text-center"><?php echo $subtitle;?>
+		<h6 class="m-0 font-weight-bold text-primary text-right">
+			<!-- <?php echo $subtitle;?> -->
+			<button class="btn btn-primary" id="btnTambah"><i class="fa fa-plus"></i></button>
+			<button class="btn btn-primary"><a href="<?= site_url('admin/cetakLaporan_jadwal')?>"> <i class="fa fa-print text-white"></i></a></button>
 		</h6>
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
 			<table class="table" id="dataTable" width="100%" cellspacing="0">
-				<thead class="thead-dark">
+				<thead>
 					<tr>
 						<th>No</th>
 						<th>Perjalanan</th>
@@ -36,9 +38,10 @@
 						<td><?php echo $row->MOBIL?></td>
 						<td><?php echo $row->ASAL?> - <?php echo $row->TUJUAN?> <br> <span class="font-weight-bold"><?php echo "Rp. ". rupiah($row->ongkos); ?></span></td>
 						<td>
+							<button id="<?= $row->id_jadwal; ?>" class="btn btn-circle btn-sm btn-warning btnEdit"><i class="fa fa-pen"></i></button>
 							<a href="#hapus_jadwal" data-toggle="modal"
 								onclick="$('#hapus_jadwal #formDelete').attr('action', '<?=site_url('admin/hapus_jadwal/'). $row->id_jadwal?>')"
-								class="btn btn-circle btn-danger"><i class="fa fa-trash"></i></a>
+								class="btn btn-circle btn-sm btn-danger"><i class="fa fa-trash"></i></a>
 						</td>
 					</tr>
 					<?php 
@@ -71,5 +74,10 @@
 <script>
 	$('#btnTambah').click(function(){
 		window.location = "<?= site_url('admin/tambahJadwal')?>";
+	});
+
+	$('.btnEdit').click(function(){
+		var id = $(this).attr('id');
+		window.location = "<?= site_url('admin/editJadwal/')?>"+id+"";
 	})
 </script>

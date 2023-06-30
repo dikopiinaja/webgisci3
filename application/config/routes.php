@@ -16,6 +16,8 @@ $route['api/user/(:num)']['GET'] = 'Admin/get_by_id/$1';
 $route['default_controller'] = 'guest/home';
 $route['konfirmasi'] = 'guest/konfirmasi';
 
+$route['admin/editJadwal/(:any)'] = 'admin/editJadwal/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 

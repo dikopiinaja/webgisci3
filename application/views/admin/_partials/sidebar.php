@@ -16,7 +16,7 @@
 	?>
 
 		<!-- Nav Item - Dashboard -->
-		<li class="nav-item">
+		<li class="nav-item p-0">
 			<a class="nav-link" href="<?= base_url('admin'); ?>">
 				<i class="fas fa-fw fa-tachometer-alt"></i>
 				<span>Dashboard</span></a>
@@ -32,7 +32,7 @@
 
 
 		<!-- Nav Item - Pages Collapse Menu -->
-		<li class="nav-item">
+		<li class="nav-item p-0">
 			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
 				<i class="fas fa-fw fa-cog"></i>
 				<span>Data</span>
@@ -63,9 +63,7 @@
 		</div>
 
 		<!-- Nav Item - Pages Collapse Menu -->
-		<li class="nav-item  <?php if ($this->uri->segment(2) == 'daftarPenumpang') {
-									echo 'active';
-								} ?>">
+		<li class="nav-item p-0  <?php if ($this->uri->segment(2) == 'daftarPenumpang') { echo 'active'; } ?>">
 			<a class="nav-link" href="<?= site_url('admin/daftarPenumpang'); ?>">
 				<i class="fas fa-fw fa-folder"></i>
 				<span>Pemesanan Tiket</span>
@@ -77,13 +75,13 @@
 			</div>
 		</div> -->
 		</li>
-		<li class="nav-item">
+		<li class="nav-item p-0">
 			<a class="nav-link <?php if ($this->uri->segment(1) == '') { echo 'active'; } ?>" href="<?= base_url('admin/layouts'); ?>">
 				<i class="fas fa-fw fa-car"></i>
 				<span>Layout Mobil</span>
 			</a>
 		</li>
-		<li class="nav-item">
+		<li class="nav-item p-0">
 			<a class="nav-link <?php if ($this->uri->segment(1) == '') { echo 'active'; } ?>" href="<?= base_url(''); ?>">
 				<i class="fas fa-fw fa-home"></i>
 				<span>Web</span>
@@ -94,7 +92,7 @@
 				<i class="fas fa-fw fa-bell"></i>
 				<span>Notifikasi</span></a>
 		</li> -->
-		<li class="nav-item <?php if ($this->uri->segment(1) == 'peta') {
+		<li class="nav-item p-0 <?php if ($this->uri->segment(1) == 'peta') {
 								echo 'active';
 							} ?>">
 			<a class="nav-link" href="<?= site_url('peta'); ?>">
@@ -103,7 +101,7 @@
 		</li>
 	<?php
 	} else { ?>
-		<li class="nav-item">
+		<li class="nav-item p-0">
 			<a class="nav-link <?php if ($this->uri->segment(1) == 'supir') {
 									echo 'active';
 								} ?>" href="<?= site_url('supir'); ?>">
@@ -111,7 +109,7 @@
 				<span>Dashboard</span>
 			</a>
 		</li>
-		<li class="nav-item <?php if ($this->uri->segment(1) == 'jadwal') {
+		<li class="nav-item p-0 <?php if ($this->uri->segment(1) == 'jadwal') {
 								echo 'active';
 							} ?>">
 			<a class="nav-link" href="<?= site_url('jadwal'); ?>">
@@ -119,7 +117,7 @@
 				<span>Jadwal Keberangkatan</span>
 			</a>
 		</li>
-		<li class="nav-item <?php if ($this->uri->segment(1) == 'daftarPenumpang') {
+		<li class="nav-item p-0 <?php if ($this->uri->segment(1) == 'daftarPenumpang') {
 								echo 'active';
 							} ?>">
 			<a class="nav-link" href="<?= site_url('daftarPenumpang'); ?>">

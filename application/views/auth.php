@@ -19,7 +19,7 @@
 
 	<!-- Custom styles for this template-->
 	<link href="<?= base_url('assets');?>/css/sb-admin-2.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="<?= base_url('assets');?>/css/sweetalert2.min.css">
 
 </head>
 
@@ -45,22 +45,19 @@
 									<div class="text-center">
 										<h1 class="h4 text-gray-900 mb-4"><i class="fa fa-route"> New Mutiara Travel</i></h1>
 									</div>
-									<!-- <formLogin class="user" method="post" action="<?= base_url('auth/process_login'); ?>"> -->
-									<!-- <form id="formLogin" class="user"> -->
-										<div class="form-group">
-											<input type="email" class="form-control" name="user_email"
-												id="user_email"
-												placeholder="Enter Email Address...">
-                                                <?= form_error('user_email','<small class="text-danger pl-1">','</small>');?>
-										</div>
-										<div class="form-group">
-											<input type="password" class="form-control" name="user_password"
-												id="user_password" placeholder="Password">
-										</div>
-										<button class="btn btn-primary btn-user btn-block btnLogin">
-											Login
-										</button>
-									<!-- </form> -->
+									<div class="form-group">
+										<input type="email" class="form-control" name="user_email"
+											id="user_email"
+											placeholder="Enter Email Address...">
+											<?= form_error('user_email','<small class="text-danger pl-1">','</small>');?>
+									</div>
+									<div class="form-group">
+										<input type="password" class="form-control" name="user_password"
+											id="user_password" placeholder="Password">
+									</div>
+									<button class="btn btn-primary btn-user btn-block btnLogin">
+										Login
+									</button>
 									<hr>
 								</div>
 							</div>
@@ -77,9 +74,7 @@
 	<?php echo "<script>".$this->session->flashdata('message')."</script>"?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
-
-	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="<?=base_url('assets');?>/js/sweetalert2.all.min.js"></script>
 	<!-- Bootstrap core JavaScript-->
 	<script src="<?= base_url('assets');?>/vendor/jquery/jquery.min.js"></script>
 	<script src="<?= base_url('assets');?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -97,17 +92,17 @@ $(document).ready(function(){
 		var userEmail = $('#user_email').val();
 		var userPassword = $('#user_password').val();
 		if(userEmail.length == ""){
-			Swal.fire({
-              type: 'warning',
-              title: 'Oops...',
-              text: 'Username Wajib Diisi !'
-            });
+			Swal.fire(
+				'Oops...',
+				'Username Wajib Diisi !',
+				'warning'
+            );
 		}else if (userPassword.length == ""){
-			Swal.fire({
-              type: 'warning',
-              title: 'Oops...',
-              text: 'Password Wajib Diisi !'
-            });
+			Swal.fire(
+				'Oops...',
+				'Password Wajib Diisi !',
+				'warning'
+            );
 		} else {
 			$.ajax({
 				url: "<?= base_url('auth/process_login')?>",
@@ -127,24 +122,20 @@ $(document).ready(function(){
 
 						if(role == 1){
 							Swal.fire({
-								type: 'success',
 								title: 'Login Admin Berhasil!',
 								text: 'Anda akan di arahkan dalam 3 Detik',
-								timer: 3000,
-								showCancelButton: false,
-								showConfirmButton: false
+								icon: 'success',
+								timer: 3000
 							})
-							.then (function() {
+							.then(function() {
 								window.location.href = "<?= base_url('admin') ?>";
 							});
 						}else{
 							Swal.fire({
-								type: 'success',
 								title: 'Login Supir Berhasil!',
 								text: 'Anda akan di arahkan dalam 3 Detik',
-								timer: 3000,
-								showCancelButton: false,
-								showConfirmButton: false
+								icon: 'success',
+								timer: 3000
 							})
 							.then (function() {
 								window.location.href = "<?= base_url('supir') ?>";
@@ -153,11 +144,11 @@ $(document).ready(function(){
 					// }
 				},
 				error: function(response){
-					Swal.fire({
-						type: 'error',
-						title: 'Oops!',
-						text: 'server error!'
-					});
+					Swal.fire(
+						'Oops!',
+						'server error!',
+						'error'
+					);
 					console.log(response);
 				}
 			})

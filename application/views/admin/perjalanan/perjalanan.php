@@ -90,7 +90,7 @@ function getPerjalanan(){
 						<td>${latitude}</td>
 						<td>${longitude}</td>
 						<td>
-						<a href="<?= base_url()?>admin/update_perjalanan/${id_perjalanan}?>"
+						<a href="<?= base_url()?>admin/update_perjalanan/${id_perjalanan}"
 										class="btn btn-sm btn-warning"><i class="fa fa-pen"></i></a>
 									<a href="#hapus_perjalanan" data-toggle="modal"
 										onclick="$('#hapus_perjalanan #formDelete').attr('action', '<?=site_url('admin/hapus_perjalanan/${id_perjalanan}')?>')"

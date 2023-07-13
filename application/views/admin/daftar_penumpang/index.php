@@ -1,5 +1,5 @@
 <div class="card">
-	<div class="card-header bg-dark text-center text-white">Daftar Penumpang</div>
+	<!-- <div class="card-header bg-green-custom text-left text-white">Daftar Penumpang</div> -->
 	<div class="card-body">
 		<div class="table-responsive">
 			<table class="table table-hover" id="dataTable">

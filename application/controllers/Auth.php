@@ -43,9 +43,10 @@ class Auth extends CI_Controller
 
                 $this->session->set_userdata($sesdata);
             }
+            
+        } else {
             // echo json_encode($validate);
 
-        } else {
             echo json_encode("Error!");
         }
     }

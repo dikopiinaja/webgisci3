@@ -6,7 +6,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
 	<div class="container">
 		<a class="navbar-brand <?php if($this->uri->segment(1)==''){echo 'active';}?>" href="<?= site_url('');?>">
-			<img src="<?= base_url('assets');?>/public/img/logo.png" alt="">
+			<!-- <img src="<?= base_url('assets');?>/public/img/logo.png" alt=""> -->
+			<i class="fa fa-bus"></i>
 			New Mutiara Travel
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"

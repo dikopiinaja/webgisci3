@@ -24,4 +24,7 @@
 		integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
 		crossorigin="" />
 <script src="<?= base_url("assets")?>/vendor/jquery/jquery.min.js"></script>
+<script src="<?= base_url('assets');?>/vendor/datatables/jquery.dataTables.min.js"></script>
+<!-- <script src="<?= base_url('assets');?>/vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
+
 <script src="<?= base_url("assets")?>/js/sweetalert2.all.min.js"></script>

@@ -308,10 +308,16 @@ class Admin extends CI_Controller {
 		redirect('admin/kategori');
 	}
 
+	function getCategoryId()
+	{
+		
+	}
+
 	public function update_kategori($id = null)
 	{
 		$data['user'] = $this->db->get_where('tb_user', ['user_email' =>
 		$this->session->userdata('user_email')])->row_array();
+
 		$data['title'] = 'Mutiara';
 		$data['breadcrumb'] = 'Kategori';
 		$data['subtitle'] = 'Update Kategori';
@@ -326,7 +332,7 @@ class Admin extends CI_Controller {
 		$data["kategori"] = $kategori->getById($id);
 		if (!$data["kategori"]) show_404();
 		
-		$this->template->utama("admin/kategori/e_kategori", $data);
+		// $this->template->utama("admin/kategori/e_kategori", $data);
 	}
 
 	public function hapus_kategori($id)

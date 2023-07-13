@@ -22,7 +22,7 @@
     <?php foreach ($cars as $value) { ?>
     <div class="col-md-3 pb-3">
         <div class="card">
-            <div class="card-header bg-success text-white mobil" id="<?= $value->id_mobil?>"><?= $value->nama_mobil?></div>
+            <div class="card-header bg-green-custom text-white mobil" id="<?= $value->id_mobil?>"><?= $value->nama_mobil?></div>
             <div class="card-body">
                 <div class="row d-flex" id="tata_letak">
                     <!-- <div class="supir d-flex justify-content-center col-sm-6"><p style="margin-bottom:0;">Supir</p></div> -->

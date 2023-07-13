@@ -6595,6 +6595,10 @@ button.close {
 	background-color: #007bff !important
 }
 
+.bg-blue-custom {
+	background-color: #0079FF !important;
+}
+
 a.bg-primary:focus,
 a.bg-primary:hover,
 button.bg-primary:focus,

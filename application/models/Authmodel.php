@@ -14,8 +14,10 @@ class AuthModel extends CI_Model {
     {
         $this->db->select("*");
         $this->db->from("tb_user");
-        $this->db->where("user_email", $user_email);
-        $this->db->where("user_password", $user_password);
+        $array = array('user_email' => $user_email, 'user_password' => $user_password);
+        $this->db->where($array);
+        // $this->db->where("user_email", $user_email);
+        // $this->db->and("user_password", $user_password);
         $query = $this->db->get();
         // echo $query;
         $user = $query->row();
@@ -24,6 +26,8 @@ class AuthModel extends CI_Model {
          */
         if (!($user)) {
             return FALSE;
+            // return $user;
+            // return $query->result();
         }
 
         if (!password_verify($user_password, $user->user_password)) {

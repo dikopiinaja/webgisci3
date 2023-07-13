@@ -13,9 +13,6 @@
 	</div>
 </div>
 <?php else: ?>
-	<?php 
-	echo $this->session->flashdata('total');
-?>
 <div class="container-fluid mt-2">
 	<div class="row justify-content-center">
 		<div class="col-6">
@@ -29,7 +26,7 @@
 					<h3 class="text-center text-danger"><b><?= $this->session->flashdata('total') ?></b></h3>
 					<br>
 					<h5 class="text-center">Silahkan Cetak E-ticket Anda !!!
-						<a href="<?= site_url('ticket/cetakTiket/'.$this->session->flashdata('no_tiket').'')?>" class="btn btn-sm btn-primary"><i
+						<a target="_blank" href="<?= site_url('ticket/cetakTiket/'.$this->session->flashdata('no_tiket').'')?>" class="btn btn-sm btn-primary"><i
 								class="fa fa-print"></i></a>
 					</h5>
 					<br>

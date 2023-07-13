@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<br><br><br><br>
-				<h1 class="display-5">New Mutiara Travel</h1>
+				<h1 class="display-5"><i class="fa fa-bus"></i> New Mutiara Travel</h1>
 				<p class="lead">Search your best travel choice, <span>here</span></p>
 			</div>
 			<div class="col-md-6">

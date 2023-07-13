@@ -46,7 +46,7 @@ class Model_Guest extends CI_Model
 
     public function getDatainfopemesanan($id)
     {
-        $this->db->select('tb_jadwal.*, Asal.nama_perjalanan AS ASAL, Tujuan.nama_perjalanan AS TUJUAN, Kategori.nama_kategori AS KATEGORI, Mobil.nama_mobil AS MOBIL');
+        $this->db->select('tb_jadwal.*, Asal.nama_perjalanan AS ASAL, Tujuan.nama_perjalanan AS TUJUAN, Kategori.nama_kategori AS KATEGORI, Mobil.nama_mobil AS MOBIL, Mobil.kapasitas');
         $this->db->where('tb_jadwal.id_jadwal', $id);
         $this->db->join('tb_perjalanan as Asal', 'tb_jadwal.asal = Asal.id_perjalanan', 'left');
         $this->db->join('tb_perjalanan as Tujuan', 'tb_jadwal.tujuan = Tujuan.id_perjalanan', 'left');
@@ -54,6 +54,15 @@ class Model_Guest extends CI_Model
         $this->db->join('tb_mobil as Mobil', 'tb_jadwal.mobil = Mobil.id_mobil', 'left');
 
         return $this->db->get('tb_jadwal');
+    }
+
+    public function getKursi()
+    {
+        $today = date('Y-m-d');
+        $query = $this->db->query("SELECT * FROM tb_penumpang WHERE tgl_pesan like '%$today%'");
+        // var_dump($query);
+        // die();
+        return $query;
     }
 
     public function getTiket()

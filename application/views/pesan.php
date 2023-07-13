@@ -100,7 +100,7 @@ $tgl = date('d-m-Y H:i:s');
 				<input type="hidden" name='id_jadwal' value='<?= $id_jadwal ?>'>
 				<input type="hidden" name='no_tiket' value='<?= $no_tiket ?>'>
 				<input type="hidden" name='ongkos' value='<?= $info->ongkos ?>'>
-				<input type="hidden" name='kursi' value='<?= $no++ ?> / <?= $info->kapasitas ?>'>
+				
 				<div class="card">
 					<div class="card-header bg-secondary text-white">
 						Detail Penumpang
@@ -121,7 +121,7 @@ $tgl = date('d-m-Y H:i:s');
 											<input type="text" name='nama[]' class="form-control" required>
 										</td>
 										<td scope="col">
-											<input type="text" name='no_identitas[]' class="form-control" required>
+											<input type="text" name='no_identitas[]' onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="form-control" required>
 											<!-- <input type="hidden" name='tgl_pesan' value="<?= $tgl ?>"> -->
 										</td>
 									</tr>
@@ -157,7 +157,7 @@ $tgl = date('d-m-Y H:i:s');
 								<label>No. Telp</label>
 							</div>
 							<div class="col-md-9">
-								<input type="text" class="form-control" name="no_telpon" required>
+								<input type="text" class="form-control" name="no_telpon" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" required>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -175,36 +175,20 @@ $tgl = date('d-m-Y H:i:s');
 		</div>
 	</div>
 </div>
-<!-- <script>
-$(documnet).ready(function() {
-	for(i=1; i<=1; i++){
-		penumpangBaru();
-	}
-	$('#penumpangBaru').click(function(e){
-		e.preventDefault();
-		penumpangBaru();
-	});
 
-	$("tableLoop tbody").find('input[type=text]').filter(':visible:first').focus();
-});
-function penumpangBaru() {
-	$(document).ready(function(){
-		$("["data-toggle='tooltip'"].tooltip();
-	});
-	var Nomor = $("tableLoop tbody tr").length + 1;
-	var Baris = '<tr>';
-			Baris += '<td class="text-center">'+Nomor+'</td>';
-			Baris += '<td input type="text" name="nama[]" class="form-control" placeholder="Nama Penumpang" required="">';
-			Baris += '</td>';
-			Baris += '<td class="text-center">'+Identitas+'</td>';
-			Baris += '<td input type="number" name="identitas[]" class="form-control" placeholder="No Identitas" required="">';
-			Baris += '</td>';
-				Baris += '<a class="btn btn-sm btn-danger" data-toogle="tooltip" title="Hapus Baris"><i class="fa fa-times"></i></a>'
-		Baris = '</tr>';
+<!-- <script type="text/javascript">
+$(document).ready(function () {    
+    
+	$('.no_identitas').keypress(function (e) {    
 
-		$("#tableLoop tbody").append(Baris);
-		$("#tableLoop tbody tr").each(function(){
-			$(this).find('td:nth-child(2) input').focus();
-		});
-}
+		// var charCode = (e.which) ? e.which : event.keyCode    
+
+		// if (String.fromCharCode(charCode).match(/[^0-9]/g))    
+
+		// 	return false;      
+		console.log(value)                  
+
+	});    
+
+});   
 </script> -->

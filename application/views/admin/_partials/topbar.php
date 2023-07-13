@@ -29,16 +29,16 @@
 		<li class="nav-item dropdown no-arrow">
 			<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
 				aria-haspopup="true" aria-expanded="false">
-				<span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user['user_name'];?></span>
+				<span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= ucwords($user['user_name']);?></span>
 				<img class="img-profile rounded-circle" src="<?= base_url('assets');?>/img/undraw_profile.svg">
 			</a>
 			<!-- Dropdown - User Information -->
 			<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 				<div class="dropdown-header ml-1 mr-1">
-					<div class="dropdown-item p-0"><i class="fa fa-user fa-sm fa-fw mr-2"></i><?= $user['user_email'];?>
+					<div class="dropdown-item p-0"><i class="fa fa-user fa-sm fa-fw mr-2"></i><?= ucwords($user['user_email']);?>
 					</div>
 					<div class="dropdown-divider p-0"></div>
-					<div class="dropdown-item p-0"><?= $user['user_name'];?></div>
+					<div class="dropdown-item p-0"><?= ucwords($user['user_name']);?></div>
 				</div>
 				<div class="dropdown-header ml-1 mr-1">
 					<a class="dropdown-item p-0" href="<?= site_url('admin/profile');?>">

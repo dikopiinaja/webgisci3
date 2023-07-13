@@ -52,6 +52,7 @@ class Guest extends CI_Controller {
 		$data['title'] = 'New Mutiara Travel';
 		$data['perjalanan'] = $this->model_guest->getDataPerjalanan()->result();
 		$data['getData'] =  'SELECT * FROM tb_perjalanan WHERE id_perjalanan=$id';
+		$data['checkpenumpang'] = $this->model_guest->getTiket();
 		// $data['jumlahPenumpang'] = $this->model_penumpang->jumlahPenumpang();
 		
 		$this->template->secondpage('home', $data);
@@ -63,6 +64,8 @@ class Guest extends CI_Controller {
 		$data['title'] = 'Formulir Data Penumpang';
 
 		$data['info'] = $this->model_guest->getDatainfopemesanan($id)->row();
+		$today = date('Y-m-d');
+		// $data['kursi'] = $this->model_guest->getKursi()->row();
 		$data['travel'] = $this->model_guest->travelProfile();
 		// $data['jumlahPenumpang'] = $this->model_penumpang->jumlahPenumpang();
 
@@ -128,13 +131,15 @@ class Guest extends CI_Controller {
 		
 		$this->model_penumpang->insertPembayaran($data);
 		
-		echo $cek = $this->model_guest->getTiket()->num_rows()+1;
+		$cek = $this->model_guest->getTiket()->num_rows()+1;
 		// echo $cek;
 
 
 		$tgl_pesan = date('Y-m-d H:i:s');
+		$today = date('Y-m-d');
 		$mobil = $_GET['mobil'];
-		$no = '1'.$mobil;
+
+		$queryKursi = $this->model_guest->getKursi()->num_rows()+1;
 
 		$post = $this->input->post();
 		foreach ($post['nama'] as $key => $value) {
@@ -144,7 +149,7 @@ class Guest extends CI_Controller {
 					'nama' => $post['nama'][$key],
 					'no_identitas' => $post['no_identitas'][$key],
 					'id_jadwal' => $this->input->post('id_jadwal'),
-					'kursi' => $no++,
+					'kursi' => $queryKursi++,
 					'tgl_pesan' => $tgl_pesan
 				);
 			}
@@ -154,6 +159,7 @@ class Guest extends CI_Controller {
 
 		// var_dump($simpan);
 
+		// die();
 		$data = array(
 			'no_tiket' => $no_tiket,
 			'id_jadwal' => $this->input->post('id_jadwal'),
@@ -163,9 +169,6 @@ class Guest extends CI_Controller {
 			'alamat' => $this->input->post('alamat')
 		);
 		$this->model_penumpang->insertPemesan($data);
-
-		// var_dump($data);
-		// die();
 
 		$this->session->set_flashdata('nomor', $no_pembayaran);
 		$this->session->set_flashdata('no_tiket', $no_tiket);

@@ -6,7 +6,6 @@
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary text-right">
-			<!-- <?php echo $subtitle;?> -->
 			<button class="btn btn-primary" id="btnTambah"><i class="fa fa-plus"></i></button>
 			<button class="btn btn-primary"><a href="<?= site_url('admin/cetakLaporan_jadwal')?>"> <i class="fa fa-print text-white"></i></a></button>
 		</h6>

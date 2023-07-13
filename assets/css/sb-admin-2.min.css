@@ -6993,6 +6993,14 @@ a.close.disabled {
 	background-color: #4e73df !important
 }
 
+.bg-blue-custom {
+	background-color: #0079FF !important;
+}
+
+.bg-green-custom {
+	background-color: #00DFA2 !important;
+}
+
 a.bg-primary:focus,
 a.bg-primary:hover,
 button.bg-primary:focus,
@@ -11336,7 +11344,7 @@ a:focus {
 }
 
 .topbar {
-	height: 4.375rem
+	height: 3.375rem
 }
 
 .topbar #sidebarToggleTop {
@@ -11620,7 +11628,7 @@ a:focus {
 }
 
 .sidebar .sidebar-brand {
-	height: 4.375rem;
+	height: 3.375rem;
 	text-decoration: none;
 	font-size: 1rem;
 	font-weight: 800;

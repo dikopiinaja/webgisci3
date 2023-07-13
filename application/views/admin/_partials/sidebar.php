@@ -1,9 +1,9 @@
-<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-blue-custom sidebar sidebar-dark accordion" id="accordionSidebar">
 
 	<!-- Sidebar - Brand -->
 	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin'); ?>">
 		<div class="sidebar-brand-icon rotate-n-15">
-			<i class="fas fa-route"></i>
+			<i class="fa fa-bus"></i>
 		</div>
 		<div class="sidebar-brand-text mx-3">Mutiara Travel<sup>New</sup></div>
 	</a>
@@ -39,7 +39,7 @@
 			</a>
 			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					<h6 class="collapse-header">Travel</h6>
+					<!-- <h6 class="collapse-header">Travel</h6> -->
 					<a class="collapse-item <?php if ($this->uri->segment(1) == 'admin/perjalanan') {
 						echo 'active'; } ?>" href="<?= base_url('admin/perjalanan'); ?>">Perjalanan</a>
 					<a class="collapse-item <?php if ($this->uri->segment(1) == 'jadwal') {

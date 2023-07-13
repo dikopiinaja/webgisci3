@@ -23,6 +23,8 @@
 
 <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" /> -->
 <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" /> -->
+<script src="<?= base_url('assets');?>/public/js/jquery.min.js"></script>
+
 <link rel="stylesheet" href="<?= base_url('assets')?>/leaflet/leaflet.css" />
 <script src="<?= base_url('assets');?>/leaflet/leaflet.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />

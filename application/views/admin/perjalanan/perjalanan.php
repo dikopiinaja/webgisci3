@@ -6,7 +6,7 @@
 	<div class="col-md-12">
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
-				<h5 class="m-0 font-weight-bold text-primary"><?= $subtitle;?>
+				<h5 class="m-0 font-weight-bold text-primary">
 					<button class="btn-sm btn-success float-right" id="newPage"><i class="fa fa-plus"></i></button>
 				</h5>
 			</div>
@@ -56,6 +56,7 @@ $(document).ready(function(){
 	$('#dataPerjalanan').DataTable({
 		fixedHeader: true,
 		pagingType: 'full_numbers',
+		order: [[3, 'desc']]
 		// bJQueryUI:true,
 		// bSort:false,
 		// bPaginate:true,
